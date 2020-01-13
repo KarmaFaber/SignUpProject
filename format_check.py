@@ -1,8 +1,16 @@
 import re 
-#-all requirements-------------
-def formar_cheker_all(str):
-    pass
+from email_validator import validate_email, EmailNotValidError
 
+
+#email format_cheker:
+def check_email(email):
+    try:
+        v = validate_email(email)  # validate and get info
+        email = v["email"]  # replace with normalized form
+        return True
+    except EmailNotValidError as e:
+        # email is not valid, exception message is human-readable
+        return False
 
 #-empty---------------------------
 def empty_check(str):
@@ -70,18 +78,3 @@ def char_check_2(str):
         print("not special char")
 
 
-
-
-
-
-#isupper() ---------------------> 
-#string.isupper()
-#Returns :
-#1.True- If all characters in the string are uppercase.
-#2.False- If the string contains 1 or more non-uppercase characters.
-
-#islower()------------------------>
-#string.islower()
-#Returns :
-#1.True- If all characters in the string are lower.
-#2.False- If the string contains 1 or more non-lowercase characters.

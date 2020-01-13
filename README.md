@@ -18,33 +18,27 @@ The main difference between the two versions lies in the use of graphic interfac
      - insert_query(sql) -server connection
      - select_query(sql) -mysql queries
 
-* <b>encrypt</b> -password encryption:
-     - encrypt_password_sha1(password)
-     - encrypt_password_sha224(password)
-     - encrypt_password_sha384(password)
-     - encrypt_password_sha256(password)
-     - encrypt_password_sha512(password)
-     - encrypt_password_shamd5(password)
-     
-
 * <b>format_check</b> - functions to check string formats:
+     - check_email(string)
      - empty_check(string)
      - size_check(string)
      - lov_check(string)
      - cap_check(string)
      - num_check(string)
-     - char_check_1(string) (re library)
-     - char_check_2(string) (string library)
+     - char_check_1(string) -> (re library)
+     - char_check_2(string) -> (string library)
 * <b>random_string_creator</b> -   :
      - ig_generator()
      - password_generator()
 
 ### Python libraries used
+* email_validator
 * pillow
 * pymysql
 * random
 * string
 * tkinter
+
 
 ### DataBase MySQL
 CREATE DATABASE <b>proyect</b>;
@@ -57,4 +51,10 @@ This project is made for educational purposes, GitHub users are free to download
 ## Author
 
 * **Karma Faber** 
+
+## Versions:
+* <b>version 1.0</b> - Operational Version. In the test I discovered an error in the encryption of the password. Format check restructuring because it does not work as desired.
+* <b>version 1.1</b> - Operational Version. Password is entered into the database without encryption and format_checker.
+
+
 
