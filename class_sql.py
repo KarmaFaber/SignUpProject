@@ -23,23 +23,9 @@ class MyDataBase(object):
             self.conn.commit()
             return cursor.fetchall()
     
-#----prueba conexion----
-""" db=MyDataBase("localhost", "root", "", "proyect")
-
-email="hola@g.com"
-passw="nldkfg54sf6g5"
-sql_insert="INSERT INTO user(email, password) VALUES ( '{}','{}')".format(email,passw)
-
-
-db.insert_query(sql_insert)  """
 
 
 
-#------prueba select-----
-""" sql_select="select * from user"
-myresult=db.select_query(sql_select)
-for x in myresult:
-    print(x) """
 
 
 

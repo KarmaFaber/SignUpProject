@@ -5,9 +5,9 @@ from tkinter import messagebox
 from string import ascii_letters, digits
 
 #my modules:---
-from format_check import *
 from class_sql import MyDataBase
 from random_string_creator import password_generator
+from encrypt import encrypt_password_md5
 
 
 #tkinter root-----------------------------------------------------------
@@ -19,7 +19,6 @@ root.config(bg="#FFC867")
 #my variables-------
 email=StringVar()
 password=StringVar()
-encrypt_pass=StringVar()
 
 #my labels------------
 lblEmail=Label(root, text="your email: ", bg="#FFC867")
@@ -45,20 +44,24 @@ passBox.grid(row=4, column=3, padx=10, pady=10)
 def sing_up():
      email=emailBox.get()
      password=passBox.get()
+     encrypt=encrypt_password_md5(password)
      
      try:
-          
           #MySQL CONEXION AND QUERY:
           db=MyDataBase("localhost", "root", "", "proyect")
-          sql_insert="INSERT INTO user(email, password) VALUES('{}','{}')".format(email,password)
+          sql_insert="INSERT INTO user(email, password) VALUES('{}','{}')".format(email,encrypt)
           db.insert_query(sql_insert)
-          messagebox.showinfo(message="Cool! Your sign up is done!!!", title="Query message :)")
+          messagebox.showwarning(message="Cool! Your sign up is done!!!", title="Query message :)")
           emailBox.delete(0,END)
           passBox.delete(0,END)
+
+          #close root/window after sign up:---
+          global root
+          root.quit()
           
 
      except TypeError:
-          messagebox.showwarning(message="some kind of format error is found: please type your password again", title="Warning")
+          messagebox.showwarning(message="(EXCEPT) some kind of format error is found: please type your password again", title="Warning")
           passBox.delete(0,END)
      except OperationalError: 
            messagebox.showwarning(message="A connection cannot be established since the destination team expressly denies that connection.", title="Warning")
